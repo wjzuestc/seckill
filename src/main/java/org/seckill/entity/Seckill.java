@@ -7,7 +7,7 @@ import java.util.Date;
  * Created by wjz on 2017/4/6.
  */
 public class Seckill {
-    //对应数据库表
+    //必须与数据库表属性名一一对应
     private long seckillId;
     private String name;
     private int number;

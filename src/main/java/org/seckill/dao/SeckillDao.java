@@ -11,9 +11,10 @@ import java.util.List;
  * Created by wjz on 2017/4/6.
  */
 public interface SeckillDao {
+
     /**
      * 减库存
-     * @param seckilled
+     * @param seckillId
      * @param killTime
      * @return 如果影响行数>1,表示更新的记录行数。0，表示失败
      */

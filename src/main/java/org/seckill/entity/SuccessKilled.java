@@ -8,19 +8,19 @@ import java.util.Date;
  */
 public class SuccessKilled {
     //对应数据库successkilled表
-    private long seckilledId;
+    private long seckillId;
     private long userPhone;
     private short state;
     private Date createTime;
     //多对一，成功购买明细记录
     private Seckill seckill;
 
-    public long getSeckilledId() {
-        return seckilledId;
+    public long getSeckillId() {
+        return seckillId;
     }
 
-    public void setSeckilledId(long seckilledId) {
-        this.seckilledId = seckilledId;
+    public void setSeckillId(long seckillId) {
+        this.seckillId = seckillId;
     }
 
     public long getUserPhone() {
@@ -58,7 +58,7 @@ public class SuccessKilled {
     @Override
     public String toString() {
         return "SuccessKilled{" +
-                "seckilledId=" + seckilledId +
+                "seckilledId=" + seckillId +
                 ", userPhone=" + userPhone +
                 ", state=" + state +
                 ", createTime=" + createTime +

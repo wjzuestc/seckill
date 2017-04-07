@@ -16,7 +16,6 @@ import javax.annotation.Resource;
 //告诉junit spring配置文件
 @ContextConfiguration({"classpath:spring/spring-dao.xml"})
 public class SuccessKilledDaoTest {
-
     @Resource
     private SuccessKilledDao successKilledDao;
     @Test
