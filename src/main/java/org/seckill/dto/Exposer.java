@@ -2,6 +2,7 @@ package org.seckill.dto;
 
 /**
  * DTO:数据传输层，表示与业务本身不相关的实体类，一般用来表示web界面需要展示的实体
+ *     在service层和web层传递数据，封装数据对象（web所需要的，方便解析）
  * Exposer：暴露秒杀地址
  * Created by wjz on 2017/4/7.
  */
