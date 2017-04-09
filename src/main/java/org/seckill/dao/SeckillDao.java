@@ -5,6 +5,7 @@ import org.seckill.entity.Seckill;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 秒杀商品实体DAO操作(Data Access Object)
@@ -35,4 +36,10 @@ public interface SeckillDao {
      * 注意：传递多个参数时，java形参会变成arg0，arg1，后期sql中会找不到
      */
     List<Seckill> queryAll(@Param("offset") int offset, @Param("limit") int limit);
+
+    /**
+     * 使用存储过程进行秒杀
+     * @param paramMap
+     */
+    void killByProcedure(Map<String, Object> paramMap);
 }
