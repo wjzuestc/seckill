@@ -2,6 +2,7 @@ package org.seckill.service.impl;
 
 import org.seckill.dao.SeckillDao;
 import org.seckill.dao.SuccessKilledDao;
+import org.seckill.dao.cache.RedisDao;
 import org.seckill.dto.Exposer;
 import org.seckill.dto.SeckillExecution;
 import org.seckill.entity.Seckill;
@@ -37,6 +38,9 @@ public class SeckillServiceImpl implements SeckillService {
     private SeckillDao seckillDao;
     @Autowired
     private SuccessKilledDao successKilledDao;
+    @Autowired
+    private RedisDao redisDao;
+
     //md5盐值字符串，用于混淆md5
     private final String slat = "dasdsadsakdisahduisahduihsadhsaiud37842j3'";
 
@@ -52,10 +56,28 @@ public class SeckillServiceImpl implements SeckillService {
 
     @Override
     public Exposer exportSeckillUrl(long seckillId) {
-        Seckill seckill = seckillDao.queryById(seckillId);
-        //没有这个商品
+        //优化点：缓存优化:超时基础上维护一致性。超过一定时间就清除数据。
+        //                 原因是：我们的秒杀单一般是不改变的，
+        /**
+         * get from cache
+         *   if null
+         *      get db
+         *      put cache
+         *    locgic
+         *
+         */
+        //访问redis
+        Seckill seckill = redisDao.getSeckill(seckillId);
         if (seckill == null) {
-            return new Exposer(false, seckillId);
+            //redis没有，访问数据库
+            seckill = seckillDao.queryById(seckillId);
+            //如果数据库也没有这个商品
+            if (seckill == null) {
+                return new Exposer(false, seckillId);
+            } else {
+                //放入redis
+                redisDao.putSeckill(seckill);
+            }
         }
         Date startTime = seckill.getStartTime();
         Date endTime = seckill.getEndTime();

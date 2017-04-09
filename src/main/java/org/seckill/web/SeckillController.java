@@ -48,7 +48,6 @@ public class SeckillController {
 
     /**
      * 商品详情页
-     *
      * @param seckillId 参数绑定商品id
      * @param model
      * @return
