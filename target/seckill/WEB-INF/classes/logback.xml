@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<configuration>
+
+    <!-- ch.qos.logback.core.ConsoleAppender 控制台输出 -->
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%-5level] %d{HH:mm:ss.SSS} [%thread] %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 日志级别-不配置默认是debug -->
+    <root>
+        <!--<level value="error" />-->
+        <!--<level value="info" />-->
+        <level value="debug" />
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>
